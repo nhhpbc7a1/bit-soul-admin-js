@@ -42,7 +42,8 @@ const Orders = () => {
 
   const orders = [
     {
-      id: 'ORD-001',
+      id: 'ord001',
+      orderNumber: 'ORD-001',
       customer: 'John Doe',
       email: 'john.doe@example.com',
       total: 299,
@@ -50,7 +51,8 @@ const Orders = () => {
       createdAt: '2024-01-15'
     },
     {
-      id: 'ORD-002',
+      id: 'ord002',
+      orderNumber: 'ORD-002',
       customer: 'Jane Smith',
       email: 'jane.smith@example.com',
       total: 99,
@@ -58,7 +60,8 @@ const Orders = () => {
       createdAt: '2024-01-15'
     },
     {
-      id: 'ORD-003',
+      id: 'ord003',
+      orderNumber: 'ORD-003',
       customer: 'Mike Johnson',
       email: 'mike.johnson@example.com',
       total: 199,
@@ -66,7 +69,8 @@ const Orders = () => {
       createdAt: '2024-01-14'
     },
     {
-      id: 'ORD-004',
+      id: 'ord004',
+      orderNumber: 'ORD-004',
       customer: 'Sarah Wilson',
       email: 'sarah.wilson@example.com',
       total: 299,
@@ -74,7 +78,8 @@ const Orders = () => {
       createdAt: '2024-01-14'
     },
     {
-      id: 'ORD-005',
+      id: 'ord005',
+      orderNumber: 'ORD-005',
       customer: 'Tom Brown',
       email: 'tom.brown@example.com',
       total: 149,
@@ -185,7 +190,7 @@ const Orders = () => {
               {filteredOrders.map((order) => (
                 <tr key={order.id} className="hover:bg-gray-50">
                   <td>
-                    <span className="font-medium text-primary-600">#{order.id}</span>
+                    <span className="font-medium text-primary-600">#{order.orderNumber || order.id}</span>
                   </td>
                   <td>
                     <div className="flex items-center gap-3">

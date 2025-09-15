@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Palette, Plus, Search, Filter, Eye, Edit, Trash2, Image, FileText, Settings } from 'lucide-react';
-import StatCard from '../components/ui/StatCard';
+import { Link } from 'react-router-dom';
 import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
 
 const UIContent = () => {
-  const [activeTab, setActiveTab] = useState('banners');
+  const [activeTab, setActiveTab] = useState('pages');
 
   const stats = [
     {
@@ -39,7 +39,6 @@ const UIContent = () => {
   ];
 
   const tabs = [
-    { id: 'banners', label: 'Banners', icon: Image },
     { id: 'pages', label: 'Static Pages', icon: FileText },
     { id: 'branding', label: 'Branding', icon: Palette },
     { id: 'footer', label: 'Footer', icon: Settings }
@@ -111,93 +110,71 @@ const UIContent = () => {
 
   const renderTabContent = () => {
     switch (activeTab) {
-      case 'banners':
-        return (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {banners.map((banner) => (
-              <div key={banner.id} className="card card-hover">
-                <div className="w-full h-48 bg-gradient-to-br from-primary-100 to-primary-200 rounded-t-xl flex items-center justify-center">
-                  <Image className="w-12 h-12 text-primary-500" />
-                </div>
-                
-                <div className="p-6">
-                  <div className="flex items-start justify-between mb-3">
-                    <h3 className="font-semibold text-gray-900">{banner.title}</h3>
-                    {getStatusBadge(banner.status)}
-                  </div>
-                  
-                  <div className="space-y-2 mb-4">
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-500">Type:</span>
-                      <Badge variant="info">{banner.type}</Badge>
-                    </div>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-500">Position:</span>
-                      <span className="text-gray-900">{banner.position}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center gap-2">
-                    <Button variant="primary" size="sm" className="flex-1">
-                      <Eye size={14} />
-                      Preview
-                    </Button>
-                    <Button variant="ghost" size="sm">
-                      <Edit size={14} />
-                    </Button>
-                    <Button variant="ghost" size="sm">
-                      <Trash2 size={14} />
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        );
-
       case 'pages':
         return (
-          <div className="card">
-            <div className="overflow-x-auto">
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th>Page Title</th>
-                    <th>Slug</th>
-                    <th>Status</th>
-                    <th>Last Modified</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200">
-                  {staticPages.map((page) => (
-                    <tr key={page.id} className="hover:bg-gray-50">
-                      <td>
-                        <span className="font-medium text-gray-900">{page.title}</span>
-                      </td>
-                      <td>
-                        <span className="text-primary-600 font-mono text-sm">{page.slug}</span>
-                      </td>
-                      <td>{getStatusBadge(page.status)}</td>
-                      <td className="text-gray-500">{page.lastModified}</td>
-                      <td>
-                        <div className="flex items-center gap-2">
-                          <Button variant="primary" size="sm">
-                            <Eye size={14} />
-                          </Button>
-                          <Button variant="ghost" size="sm">
-                            <Edit size={14} />
-                          </Button>
-                          <Button variant="ghost" size="sm">
-                            <Trash2 size={14} />
-                          </Button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+          <div className="space-y-6">
+            {/* Page Management Actions */}
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900">Static Page Management</h3>
+                <p className="text-sm text-gray-600">Edit content of static pages (About Us, Contact Us, FAQ, etc.)</p>
+              </div>
+              <Link to="/ui-content/pages/create">
+                <Button variant="primary" size="sm">
+                  <Plus size={16} />
+                  Create New Page
+                </Button>
+              </Link>
             </div>
+
+            {/* Pages Table */}
+            <div className="card">
+              <div className="overflow-x-auto">
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th>Page Title</th>
+                      <th>Slug</th>
+                      <th>Status</th>
+                      <th>Last Modified</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200">
+                    {staticPages.map((page) => (
+                      <tr key={page.id} className="hover:bg-gray-50">
+                        <td>
+                          <span className="font-medium text-gray-900">{page.title}</span>
+                        </td>
+                        <td>
+                          <span className="text-primary-600 font-mono text-sm">{page.slug}</span>
+                        </td>
+                        <td>{getStatusBadge(page.status)}</td>
+                        <td className="text-gray-500">{page.lastModified}</td>
+                        <td>
+                          <div className="flex items-center gap-2">
+                            <Link to={`/ui-content/pages/${page.id}`}>
+                              <Button variant="primary" size="sm" title="View Page Details">
+                                <Eye size={14} />
+                              </Button>
+                            </Link>
+                            <Link to={`/ui-content/pages/${page.id}/edit`}>
+                              <Button variant="ghost" size="sm" title="Edit Page Content">
+                                <Edit size={14} />
+                              </Button>
+                            </Link>
+                            <Button variant="ghost" size="sm" title="Delete Page">
+                              <Trash2 size={14} />
+                            </Button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
           </div>
         );
 
@@ -266,12 +243,6 @@ const UIContent = () => {
         </Button>
       </div>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {stats.map((stat, index) => (
-          <StatCard key={index} {...stat} />
-        ))}
-      </div>
 
       {/* Content Management Tabs */}
       <div className="card">

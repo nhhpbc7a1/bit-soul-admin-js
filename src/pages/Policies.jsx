@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FileText, Plus, Search, Edit, Eye, CheckCircle, Clock, AlertCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import Badge from '../components/ui/Badge';
 
@@ -121,10 +122,12 @@ const Policies = () => {
           <h1 className="text-3xl font-bold text-gray-900">Policies Management</h1>
           <p className="text-gray-600 mt-1">Create, manage, and publish platform policies and legal documents</p>
         </div>
-        <Button variant="primary">
-          <Plus size={16} />
-          Create New Policy
-        </Button>
+        <Link to="/policies/create">
+          <Button variant="primary">
+            <Plus size={16} />
+            Create New Policy
+          </Button>
+        </Link>
       </div>
 
       {/* Filters */}
@@ -200,14 +203,18 @@ const Policies = () => {
               </div>
               
               <div className="flex items-center gap-2">
-                <Button variant="primary" size="sm" className="flex-1">
-                  <Edit size={14} />
-                  Edit Policy
-                </Button>
-                <Button variant="secondary" size="sm">
-                  <Eye size={14} />
-                  View
-                </Button>
+                <Link to={`/policies/${policy.id}/edit`} className="flex-1">
+                  <Button variant="primary" size="sm" className="w-full">
+                    <Edit size={14} />
+                    Edit Policy
+                  </Button>
+                </Link>
+                <Link to={`/policies/${policy.id}`}>
+                  <Button variant="secondary" size="sm">
+                    <Eye size={14} />
+                    View
+                  </Button>
+                </Link>
               </div>
               
               {policy.status === 'draft' && (
@@ -223,38 +230,33 @@ const Policies = () => {
         ))}
       </div>
 
-      {/* Stats Summary */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="card text-center">
-          <div className="p-4">
+      {/* Summary Stats - Moved to bottom */}
+      <div className="bg-gray-50 rounded-lg p-6">
+        <h3 className="text-lg font-semibold text-gray-900 mb-4">Summary Statistics</h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+          <div>
             <div className="text-2xl font-bold text-green-600">
               {policies.filter(p => p.status === 'published').length}
             </div>
-            <div className="text-sm text-gray-500">Published Policies</div>
+            <div className="text-sm text-gray-600">Published</div>
           </div>
-        </div>
-        <div className="card text-center">
-          <div className="p-4">
+          <div>
             <div className="text-2xl font-bold text-yellow-600">
               {policies.filter(p => p.status === 'draft').length}
             </div>
-            <div className="text-sm text-gray-500">Draft Policies</div>
+            <div className="text-sm text-gray-600">Drafts</div>
           </div>
-        </div>
-        <div className="card text-center">
-          <div className="p-4">
+          <div>
             <div className="text-2xl font-bold text-blue-600">
               {policies.filter(p => p.status === 'review').length}
             </div>
-            <div className="text-sm text-gray-500">Under Review</div>
+            <div className="text-sm text-gray-600">Under Review</div>
           </div>
-        </div>
-        <div className="card text-center">
-          <div className="p-4">
+          <div>
             <div className="text-2xl font-bold text-gray-600">
               {policies.reduce((sum, p) => sum + p.wordCount, 0).toLocaleString()}
             </div>
-            <div className="text-sm text-gray-500">Total Words</div>
+            <div className="text-sm text-gray-600">Total Words</div>
           </div>
         </div>
       </div>
@@ -265,10 +267,12 @@ const Policies = () => {
           <FileText className="w-12 h-12 text-gray-400 mx-auto mb-4" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">No policies found</h3>
           <p className="text-gray-500 mb-4">Try adjusting your search or filter criteria</p>
-          <Button variant="primary">
-            <Plus size={16} />
-            Create First Policy
-          </Button>
+          <Link to="/policies/create">
+            <Button variant="primary">
+              <Plus size={16} />
+              Create First Policy
+            </Button>
+          </Link>
         </div>
       )}
     </div>

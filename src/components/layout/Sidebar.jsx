@@ -18,17 +18,29 @@ import {
 
 const navItems = [
   { id: 'dashboard', label: 'Dashboard', icon: Home, path: '/' },
-  { id: 'users', label: 'Users', icon: Users, path: '/users', badge: 5 },
-  { id: 'orders', label: 'Orders', icon: ShoppingBag, path: '/orders', badge: 12 },
-  { id: 'products', label: 'Products', icon: Package, path: '/products' },
+  { id: 'users', label: 'Users', icon: Users, path: '/users', badge: 2847, badgeColor: 'primary' },
+  { id: 'orders', label: 'Orders', icon: ShoppingBag, path: '/orders', badge: 23, badgeColor: 'primary' },
+  { id: 'products', label: 'Products', icon: Package, path: '/products', badge: 342, badgeColor: 'primary' },
   { id: 'categories', label: 'Categories', icon: Tag, path: '/categories' },
   { id: 'payments', label: 'Payments', icon: CreditCard, path: '/payments' },
   { id: 'packages', label: 'Packages', icon: Package, path: '/packages' },
-  { id: 'complaints', label: 'Complaints', icon: AlertTriangle, path: '/complaints' },
+  { id: 'complaints', label: 'Complaints', icon: AlertTriangle, path: '/complaints', badge: 7, badgeColor: 'danger' },
+  { id: 'policies', label: 'Policies', icon: FileText, path: '/policies' },
   { id: 'ai-operations', label: 'AI Operations', icon: Cpu, path: '/ai-operations' },
   { id: 'system-config', label: 'System Config', icon: Settings, path: '/system-config' },
   { id: 'ui-content', label: 'UI & Content', icon: Palette, path: '/ui-content' },
 ];
+
+const getBadgeColor = (color) => {
+  switch (color) {
+    case 'danger':
+      return 'bg-red-500 hover:bg-red-600'; // Chỉ cho complaints/urgent
+    case 'primary':
+      return 'bg-primary-500 hover:bg-primary-600'; // Cho tất cả info badges
+    default:
+      return 'bg-gray-500 hover:bg-gray-600'; // Fallback
+  }
+};
 
 const Sidebar = ({ isCollapsed, onToggle }) => {
   const location = useLocation();
@@ -104,10 +116,11 @@ const Sidebar = ({ isCollapsed, onToggle }) => {
                 {/* Badge */}
                 {item.badge && (
                   <span className={`
-                    inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-red-500 rounded-full ml-auto
+                    inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white rounded-full ml-auto
                     ${isCollapsed ? 'absolute -top-1 -right-1 w-5 h-5 text-xs flex items-center justify-center' : ''}
+                    ${getBadgeColor(item.badgeColor)}
                   `}>
-                    {item.badge}
+                    {item.badge > 999 ? '999+' : item.badge}
                   </span>
                 )}
 
@@ -116,8 +129,8 @@ const Sidebar = ({ isCollapsed, onToggle }) => {
                   <div className="absolute left-full ml-2 px-2 py-1 bg-gray-900 text-white text-sm rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-50">
                     {item.label}
                     {item.badge && (
-                      <span className="ml-2 px-1.5 py-0.5 bg-red-500 text-white text-xs rounded-full">
-                        {item.badge}
+                      <span className={`ml-2 px-1.5 py-0.5 text-white text-xs rounded-full ${getBadgeColor(item.badgeColor)}`}>
+                        {item.badge > 999 ? '999+' : item.badge}
                       </span>
                     )}
                   </div>

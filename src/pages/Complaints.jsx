@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AlertTriangle, Plus, Search, Filter, Eye, MessageSquare, Clock, User } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import StatCard from '../components/ui/StatCard';
 import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
@@ -42,7 +43,8 @@ const Complaints = () => {
 
   const complaints = [
     {
-      id: 'COMP-001',
+      id: 'comp001',
+      complaintNumber: 'COMP-001',
       customer: 'John Doe',
       email: 'john.doe@example.com',
       title: 'Payment not processed correctly',
@@ -53,7 +55,8 @@ const Complaints = () => {
       createdAt: '2024-01-15'
     },
     {
-      id: 'COMP-002',
+      id: 'comp002',
+      complaintNumber: 'COMP-002',
       customer: 'Jane Smith',
       email: 'jane.smith@example.com',
       title: 'Unable to access premium features',
@@ -64,7 +67,8 @@ const Complaints = () => {
       createdAt: '2024-01-14'
     },
     {
-      id: 'COMP-003',
+      id: 'comp003',
+      complaintNumber: 'COMP-003',
       customer: 'Mike Johnson',
       email: 'mike.johnson@example.com',
       title: 'Account suspension without notice',
@@ -182,7 +186,9 @@ const Complaints = () => {
               <div className="flex items-start justify-between">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-3 mb-2">
-                    <span className="font-medium text-primary-600">#{complaint.id}</span>
+                    <Link to={`/complaints/${complaint.id}`} className="font-medium text-primary-600 hover:text-primary-800">
+                      #{complaint.complaintNumber || complaint.id}
+                    </Link>
                     {getPriorityBadge(complaint.priority)}
                     {getStatusBadge(complaint.status)}
                   </div>
@@ -214,14 +220,18 @@ const Complaints = () => {
                 </div>
                 
                 <div className="flex items-center gap-2 ml-4">
-                  <Button variant="primary" size="sm">
-                    <Eye size={14} />
-                    View
-                  </Button>
-                  <Button variant="secondary" size="sm">
-                    <MessageSquare size={14} />
-                    Reply
-                  </Button>
+                  <Link to={`/complaints/${complaint.id}`}>
+                    <Button variant="primary" size="sm">
+                      <Eye size={14} />
+                      View
+                    </Button>
+                  </Link>
+                  <Link to={`/complaints/${complaint.id}`}>
+                    <Button variant="secondary" size="sm">
+                      <MessageSquare size={14} />
+                      Reply
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>

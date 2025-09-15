@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Package, Plus, Search, Filter, Eye, Edit, Trash2, Star } from 'lucide-react';
+import { Package, Plus, Search, Filter, Eye, Edit, Trash2, Star, Grid3X3, List } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
@@ -7,6 +7,7 @@ import Button from '../components/ui/Button';
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
+  const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'list'
 
 
   const products = [
@@ -117,10 +118,26 @@ const Products = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <div className="flex bg-gray-100 rounded-lg p-1">
-            <button className="px-4 py-2 text-sm font-medium text-white bg-primary-500 rounded-md">
+            <button 
+              onClick={() => setViewMode('grid')}
+              className={`px-4 py-2 text-sm font-medium rounded-md ${
+                viewMode === 'grid'
+                  ? 'text-white bg-primary-500'
+                  : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              <Grid3X3 size={16} className="inline mr-2" />
               Grid View
             </button>
-            <button className="px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700">
+            <button 
+              onClick={() => setViewMode('list')}
+              className={`px-4 py-2 text-sm font-medium rounded-md ${
+                viewMode === 'list'
+                  ? 'text-white bg-primary-500'
+                  : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              <List size={16} className="inline mr-2" />
               List View
             </button>
           </div>
@@ -157,65 +174,138 @@ const Products = () => {
         </div>
       </div>
 
-      {/* Products Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {filteredProducts.map((product) => (
-          <div key={product.id} className="card card-hover">
-            {/* Product Image */}
-            <div className="aspect-w-16 aspect-h-9 bg-gray-200 rounded-t-xl">
-              <div className="w-full h-48 bg-gradient-to-br from-primary-100 to-primary-200 rounded-t-xl flex items-center justify-center">
-                <Package className="w-12 h-12 text-primary-500" />
-              </div>
-            </div>
-            
-            {/* Product Info */}
-            <div className="p-6">
-              <div className="flex items-start justify-between mb-2">
-                <h3 className="font-semibold text-gray-900 line-clamp-2">{product.name}</h3>
-                <div className="flex items-center gap-1 text-yellow-400">
-                  <Star size={14} fill="currentColor" />
-                  <span className="text-xs text-gray-500">4.8</span>
+      {/* Products Grid/List View */}
+      {viewMode === 'grid' ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {filteredProducts.map((product) => (
+            <div key={product.id} className="card card-hover">
+              {/* Product Image */}
+              <div className="aspect-w-16 aspect-h-9 bg-gray-200 rounded-t-xl">
+                <div className="w-full h-48 bg-gradient-to-br from-primary-100 to-primary-200 rounded-t-xl flex items-center justify-center">
+                  <Package className="w-12 h-12 text-primary-500" />
                 </div>
               </div>
               
-              <p className="text-sm text-gray-600 mb-4 line-clamp-2">{product.description}</p>
-              
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <span className="text-2xl font-bold text-gray-900">${product.price}</span>
-                  <span className="text-sm text-gray-500 ml-1">/month</span>
+              {/* Product Info */}
+              <div className="p-6">
+                <div className="flex items-start justify-between mb-2">
+                  <h3 className="font-semibold text-gray-900 line-clamp-2">{product.name}</h3>
+                  <div className="flex items-center gap-1 text-yellow-400">
+                    <Star size={14} fill="currentColor" />
+                    <span className="text-xs text-gray-500">4.8</span>
+                  </div>
                 </div>
-                {getStatusBadge(product.status)}
-              </div>
-              
-              <div className="flex items-center justify-between mb-4">
-                <div className="text-sm">
-                  <span className="text-gray-500">Stock: </span>
-                  <span className="font-medium">{product.stock}</span>
+                
+                <p className="text-sm text-gray-600 mb-4 line-clamp-2">{product.description}</p>
+                
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <span className="text-2xl font-bold text-gray-900">${product.price}</span>
+                    <span className="text-sm text-gray-500 ml-1">/month</span>
+                  </div>
+                  {getStatusBadge(product.status)}
                 </div>
-                {getStockStatus(product.stock)}
-              </div>
-              
-              <div className="text-xs text-gray-500 mb-4">
-                Category: {product.category}
-              </div>
-              
-              {/* Actions */}
-              <div className="flex items-center gap-2">
-                <Link to={`/products/${product.id}`} className="flex-1">
-                  <Button variant="primary" size="sm" className="w-full">
-                    <Eye size={14} />
-                    View Details
+                
+                <div className="flex items-center justify-between mb-4">
+                  <div className="text-sm">
+                    <span className="text-gray-500">Stock: </span>
+                    <span className="font-medium">{product.stock}</span>
+                  </div>
+                  {getStockStatus(product.stock)}
+                </div>
+                
+                <div className="text-xs text-gray-500 mb-4">
+                  Category: {product.category}
+                </div>
+                
+                {/* Actions */}
+                <div className="flex items-center gap-2">
+                  <Link to={`/products/${product.id}`} className="flex-1">
+                    <Button variant="primary" size="sm" className="w-full">
+                      <Eye size={14} />
+                      View Details
+                    </Button>
+                  </Link>
+                  <Button variant="warning" size="sm">
+                    Hide
                   </Button>
-                </Link>
-                <Button variant="warning" size="sm">
-                  Hide
-                </Button>
+                </div>
               </div>
             </div>
+          ))}
+        </div>
+      ) : (
+        <div className="card">
+          <div className="overflow-x-auto">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Category</th>
+                  <th>Stock</th>
+                  <th>Status</th>
+                  <th>Created</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {filteredProducts.map((product) => (
+                  <tr key={product.id} className="hover:bg-gray-50">
+                    <td>
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 bg-gradient-to-br from-primary-100 to-primary-200 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <Package className="w-6 h-6 text-primary-500" />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="font-medium text-gray-900 truncate">{product.name}</p>
+                          <p className="text-sm text-gray-500 truncate">{product.description}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div>
+                        <span className="font-semibold text-gray-900">${product.price}</span>
+                        <span className="text-sm text-gray-500 ml-1">/month</span>
+                      </div>
+                    </td>
+                    <td>
+                      <span className="text-sm text-gray-600">{product.category}</span>
+                    </td>
+                    <td>
+                      <div className="flex items-center gap-2">
+                        <span className="font-medium text-gray-900">{product.stock}</span>
+                        {getStockStatus(product.stock)}
+                      </div>
+                    </td>
+                    <td>
+                      {getStatusBadge(product.status)}
+                    </td>
+                    <td>
+                      <span className="text-sm text-gray-500">{product.createdAt}</span>
+                    </td>
+                    <td>
+                      <div className="flex items-center gap-2">
+                        <Link to={`/products/${product.id}`}>
+                          <Button variant="primary" size="sm">
+                            <Eye size={14} />
+                          </Button>
+                        </Link>
+                        <Button variant="ghost" size="sm">
+                          <Edit size={14} />
+                        </Button>
+                        <Button variant="warning" size="sm">
+                          Hide
+                        </Button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-        ))}
-      </div>
+        </div>
+      )}
 
       {/* Pagination */}
       <div className="flex items-center justify-center">

@@ -139,6 +139,37 @@
   .toggle-switch-thumb-unchecked {
     @apply translate-x-1;
   }
+
+  /* Switch Component */
+  .switch {
+    @apply relative inline-block w-10 h-6;
+    border: 1px solid red !important; /* Debug border */
+  }
+
+  .switch input {
+    @apply opacity-0 w-0 h-0;
+  }
+
+  .slider {
+    @apply absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-gray-300 transition-all duration-300 rounded-full;
+  }
+
+  .slider:before {
+    content: '';
+    @apply absolute h-4 w-4 left-1 bottom-1 bg-white transition-all duration-300 rounded-full;
+  }
+
+  input:checked + .slider {
+    @apply bg-primary-500;
+  }
+
+  input:focus + .slider {
+    @apply ring-2 ring-primary-500 ring-offset-2;
+  }
+
+  input:checked + .slider:before {
+    @apply transform translate-x-4;
+  }
 }
 
 @layer utilities {

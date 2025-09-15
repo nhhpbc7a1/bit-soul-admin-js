@@ -9,13 +9,13 @@ const OrderDetail = () => {
   
   // Mock order data - in real app, fetch based on ID
   const [order] = useState({
-    id: id || 'ORD-001',
-    orderNumber: 'ORD-2024-001',
+    id: id || 'ord001',
+    orderNumber: id === 'ord001' ? 'ORD-001' : id === 'ord002' ? 'ORD-002' : id === 'ord003' ? 'ORD-003' : id === 'ord004' ? 'ORD-004' : id === 'ord005' ? 'ORD-005' : 'ORD-2024-001',
     status: 'processing',
     total: 299.99,
     subtotal: 249.99,
     tax: 25.00,
-    shipping: 25.00,
+    shippingCost: 25.00,
     discount: 0,
     currency: 'USD',
     paymentStatus: 'paid',
@@ -248,7 +248,7 @@ const OrderDetail = () => {
                       <div className="text-right">
                         <p className="font-medium text-gray-900">${item.price}</p>
                         <p className="text-sm text-gray-500">
-                          Total: ${(item.price * item.quantity).toFixed(2)}
+                          Total: ${(parseFloat(item.price) * parseInt(item.quantity)).toFixed(2)}
                         </p>
                       </div>
                     </div>
@@ -488,7 +488,7 @@ const OrderDetail = () => {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Shipping</span>
-                    <span className="text-gray-900">${order.shipping}</span>
+                    <span className="text-gray-900">${order.shippingCost}</span>
                   </div>
                   {order.discount > 0 && (
                     <div className="flex justify-between">
