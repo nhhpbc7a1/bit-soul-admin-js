@@ -1,0 +1,272 @@
+2.2.5. Admin
+2.2.5.1. View Dashboard & Activity Functionality
+Description: This function allows the Administrator to view an overview of the platform's operational status and key metrics.
+Priority Level: High
+Functional Requirements
+No.
+Requirement 
+Description
+1
+View Key Metrics
+Display core performance indicators (KPIs) such as total revenue, number of orders, active users, and website traffic.
+2
+View Graphical Reports
+Display trends and statistics through interactive charts (e.g., daily/monthly revenue, order volume, user growth).
+3
+View Recent Activity Log
+Display a log of recent significant activities on the platform (e.g., new registrations, recent large orders, system alerts).
+
+
+2.2.5.2. Manage Users
+Description: This function allows the Administrator to manage user accounts, including their roles and active status.
+Priority Level: High
+Functional Requirements
+No.
+Requirement 
+Description
+1
+View User List
+Display a list of all user accounts in the system (Customers, Sellers, Suppliers, Administrators)
+2
+Search & Filter Users
+Allow searching and filtering users by criteria such as name, email, role, or status.
+3
+View User Details
+Display detailed information for a selected user account.
+4
+Edit User Information
+Allow the Administrator to modify basic user information (e.g., name, contact address).
+5
+Block/Unblock Accounts
+Allow the Administrator to change the active status of user accounts (block to suspend, unblock to reactivate).
+6
+Change User Role
+Allow the Administrator to change a user's role within the system (e.g., from Customer to Seller).
+
+
+2.2.5.3. Manage Categories
+Description: This function allows the Administrator to manage the structure and classification categories for products on the platform.
+Priority Level: Medium
+Functional Requirements
+No.
+Requirement 
+Description
+1
+View Category List
+Display a list of all existing product categories and their hierarchical structure.
+2
+Add New Category
+Allow the Administrator to create a new product category with a name, description, and hierarchical level.
+3
+Edit Category
+Allow the Administrator to modify information of an existing product category (e.g., name, description).
+4
+Delete Category
+Allow the Administrator to delete a product category from the system.
+5
+Arrange Categories
+Allow the Administrator to change the order or position of categories within the tree structure.
+
+2.2.5.4. Manage All Products
+Description: This function allows the Administrator to monitor and manage all products listed on the platform.
+Priority Level: High
+Functional Requirements
+No.
+Requirement 
+Description
+1
+View Product List
+Display a list of all products listed by all Sellers and Suppliers on the platform.
+2
+Search & Filter Products
+Allow searching and filtering products by criteria such as product name, Seller, Supplier, category, or status.
+3
+View Product Details
+Display detailed information of a product, including associated Seller and Supplier information.
+4
+Hide/Unhide Product
+Allow the Administrator to temporarily hide a product from public view or unhide it.
+5
+Remove Product
+Allow the Administrator to soft delete a product from the system due to policy violation or other reasons.
+
+2.2.5.5. Manage All Orders
+Description: This function allows the Administrator to monitor and manage customer orders, their statuses, and related actions.
+Priority Level: High
+Functional Requirements
+
+No.
+Requirement 
+Description
+1
+View Order List
+Display a list of all orders across the entire platform.
+2
+Search & Filter Orders
+Allow searching and filtering orders by ID, Customer, Seller, Supplier, status, or date range.
+3
+View Order Details
+Display detailed information for each order, including items, status history, shipping, and payment details.
+4
+Cancel Order
+Allow the Administrator to cancel a specific order in special cases (e.g., fraud, serious complaint).
+5
+Update Order Status
+Allow the Administrator to manually change the order status in exceptional circumstances (e.g., system error).
+6
+View Order Statistics Report
+Display aggregated reports or charts on order status (e.g., daily order count, cancellation rate).
+
+
+2.2.5.6. Manage Service Packages
+Description: This function allows the Administrator to manage the creation and configuration of service packages offered to users (e.g., for Sellers or Suppliers).
+	Priority Level: Medium
+Functional Requirements
+
+No.
+Requirement 
+Description
+1
+View Service Package List
+Display a list of all existing service packages on the platform.
+2
+Create New Service Package
+Allow the Administrator to create a new service package with details such as name, features, price, and duration.
+3
+Edit Service Package
+Allow the Administrator to modify the information of an existing service package.
+4
+Delete Service Package
+Allow the Administrator to delete a service package from the system.
+
+
+2.2.5.7. Manage Payments
+Description: This function allows the Administrator to oversee financial transactions, revenue, and payment flows on the platform.
+Priority Level: High
+Functional Requirements
+No.
+Requirement 
+Description
+1
+View Payment Transactions
+Display a list of payment transactions from Customers.
+2
+View Payout Transactions
+Display a list of payout transactions to Sellers and Suppliers.
+3
+Search & Filter Transactions
+Allow searching and filtering transactions by date, user, status, or transaction type.
+4
+View Transaction Details
+Display detailed information of a specific payment or payout transaction.
+5
+Process Manual Refunds/Payouts
+Allow the Administrator to initiate or approve manual refunds or payouts in special cases (if the system supports it).
+
+
+2.2.5.8. Manage System Configurations
+Description: This function allows the System Administrator to configure the platform's core operational parameters, business rules, and technical third-party service integrations. This section is focused on the underlying settings that control how the system functions, distinct from managing user-facing policies or website content which are handled in other sections.
+Priority Level: High
+Functional Requirements
+No.
+Requirement 
+Description
+1
+Manage Core Business Rules
+Allow the Administrator to view and edit fundamental business parameters, including:
+Default commission rates for sellers.
+Other platform fees (e.g., listing fees, withdrawal fees, if applicable).
+2
+Manage Payment Gateway Integrations
+Allow the Administrator to configure and manage connections to payment gateways by:
+Enabling or disabling specific payment methods (e.g., MoMo, ZaloPay,COD).
+Adding or updating API credentials for each gateway.
+3
+Manage Technical & Operational Settings
+Allow the Administrator to configure technical parameters for system-wide operations, such as:
+SMTP server settings for sending transactional emails.
+Default system language and supported currencies.
+4
+View Audit Log
+Display a historical log of all changes made within this section, detailing the setting changed, the old and new values, the administrator who made the change, and the timestamp.
+
+
+2.2.5.9. Manage AI Operations
+Description: This function allows the Administrator to manage the configuration and monitor the activity of AI services within the system.
+Priority Level: Medium
+Functional Requirements
+No.
+Requirement 
+Description
+1
+View Current AI Configuration
+Display the current configurations of AI services (e.g., active model version, key parameters).
+2
+Edit AI Parameters
+Allow the Administrator to adjust AI configuration parameters (if permitted).
+3
+Save AI Configuration
+Save the AI configuration changes made.
+
+
+2.2.5.10. Manage UI & Content
+Description: This function allows the Administrator to manage the user interface, static content, and visual elements on the website.
+Priority Level: Medium
+Functional Requirements
+No.
+Requirement 
+Description
+1
+Manage Homepage Banners
+Allow the Administrator to add, edit, delete, or arrange banners displayed on the homepage.
+2
+Manage Static Page Content
+Allow the Administrator to edit the content of static pages (e.g., About Us, Contact Us, FAQ).
+
+
+2.2.5.11. Manage Policies
+Description: This function allows the Administrator to define, update, and manage the platform's rules and policies.
+Priority Level: High
+Functional Requirements
+No.
+Requirement 
+Description
+1
+View Policy List
+Display a list of all existing policies on the platform (e.g., Terms of Service, Privacy Policy).
+2
+Create New Policy
+Allow the Administrator to create a new policy with a title and content.
+3
+Edit Policy
+Allow the Administrator to modify the content of an existing policy.
+4
+Publish Policy
+Allow the Administrator to publish or update a new version of a policy to take effect.
+
+2.2.5.12. Manage Complaints
+Description: This function allows the Administrator to receive, track, and resolve complaints or reported issues from users.
+Priority Level: High
+Functional Requirements
+No.
+Requirement 
+Description
+1
+View Complaint List
+Display a list of all open or closed complaints and reported issues.
+2
+Search & Filter Complaints
+Allow searching and filtering complaints by reporter, related order/product, status, or date.
+3
+View Complaint Details
+Display detailed information of a complaint, including submitted information, evidence, and involved parties.
+4
+Update Complaint Status
+Allow the Administrator to change the status of a complaint (e.g., Investigating, Pending Response, Resolved).
+5
+Add Internal Notes
+Allow the Administrator to add internal notes or information related to complaint resolution.
+6
+Record Decision/Resolution
+Allow the Administrator to record the final decision and resolution method for a complaint.
+
