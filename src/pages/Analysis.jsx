@@ -63,16 +63,6 @@ const Analysis = () => {
           <h1 className="text-2xl font-bold text-gray-900">Analysis Dashboard</h1>
           <p className="text-gray-600 mt-1">Comprehensive analytics and insights for your business</p>
         </div>
-        <div className="flex items-center gap-3">
-          <Button variant="secondary" size="sm">
-            <BarChart3 size={16} className="mr-2" />
-            Generate Report
-          </Button>
-          <Button variant="primary" size="sm">
-            <TrendingUp size={16} className="mr-2" />
-            View Trends
-          </Button>
-        </div>
       </div>
 
       {/* Quick Stats */}
@@ -202,48 +192,6 @@ const Analysis = () => {
         })}
       </div>
 
-      {/* Recent Activity */}
-      <div className="card">
-        <div className="p-6 border-b border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900">Recent Analysis Activity</h3>
-        </div>
-        <div className="p-6">
-          <div className="space-y-4">
-            <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg">
-              <div className="p-2 bg-blue-100 rounded-full">
-                <TrendingUp className="w-4 h-4 text-blue-600" />
-              </div>
-              <div className="flex-1">
-                <p className="text-sm font-medium text-gray-900">Product Performance Report Generated</p>
-                <p className="text-xs text-gray-500">2 hours ago • 12 top performers identified</p>
-              </div>
-              <Badge variant="secondary">Completed</Badge>
-            </div>
-
-            <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg">
-              <div className="p-2 bg-green-100 rounded-full">
-                <PieChart className="w-4 h-4 text-green-600" />
-              </div>
-              <div className="flex-1">
-                <p className="text-sm font-medium text-gray-900">Category Analysis Updated</p>
-                <p className="text-xs text-gray-500">4 hours ago • Electronics leading with 32.1% market share</p>
-              </div>
-              <Badge variant="secondary">Completed</Badge>
-            </div>
-
-            <div className="flex items-center gap-3 p-3 bg-purple-50 rounded-lg">
-              <div className="p-2 bg-purple-100 rounded-full">
-                <Target className="w-4 h-4 text-purple-600" />
-              </div>
-              <div className="flex-1">
-                <p className="text-sm font-medium text-gray-900">Detailed Analytics Processed</p>
-                <p className="text-xs text-gray-500">6 hours ago • 4,510 total views analyzed</p>
-              </div>
-              <Badge variant="secondary">Completed</Badge>
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* Admin Actions */}
       <div className="card">
@@ -255,16 +203,8 @@ const Analysis = () => {
               Generate Full Report
             </Button>
             <Button variant="secondary" size="sm">
-              <TrendingUp size={16} className="mr-2" />
-              View Performance Trends
-            </Button>
-            <Button variant="secondary" size="sm">
               <PieChart size={16} className="mr-2" />
               Export Analytics Data
-            </Button>
-            <Button variant="warning" size="sm">
-              <Target size={16} className="mr-2" />
-              Identify Opportunities
             </Button>
           </div>
         </div>

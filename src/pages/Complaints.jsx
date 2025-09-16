@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AlertTriangle, Plus, Search, Filter, Eye, MessageSquare, Clock, User } from 'lucide-react';
+import { AlertTriangle, Plus, Search, Filter, MessageSquare, Clock, User } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import StatCard from '../components/ui/StatCard';
 import Badge from '../components/ui/Badge';
@@ -222,14 +222,8 @@ const Complaints = () => {
                 <div className="flex items-center gap-2 ml-4">
                   <Link to={`/complaints/${complaint.id}`}>
                     <Button variant="primary" size="sm">
-                      <Eye size={14} />
-                      View
-                    </Button>
-                  </Link>
-                  <Link to={`/complaints/${complaint.id}`}>
-                    <Button variant="secondary" size="sm">
                       <MessageSquare size={14} />
-                      Reply
+                      Process
                     </Button>
                   </Link>
                 </div>

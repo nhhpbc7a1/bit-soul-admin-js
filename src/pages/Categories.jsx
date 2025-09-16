@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Tag, Plus, Search, Filter, Eye, Edit, Trash2, FolderOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import StatCard from '../components/ui/StatCard';
 import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
 
@@ -9,94 +8,162 @@ const Categories = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
 
-  const stats = [
-    {
-      title: 'Total Categories',
-      value: 24,
-      change: { value: 2, type: 'increase' },
-      icon: Tag,
-      color: 'primary'
-    },
-    {
-      title: 'Active Categories',
-      value: 20,
-      change: { value: 5, type: 'increase' },
-      icon: Tag,
-      color: 'success'
-    },
-    {
-      title: 'Parent Categories',
-      value: 8,
-      change: { value: 1, type: 'increase' },
-      icon: FolderOpen,
-      color: 'info'
-    },
-    {
-      title: 'Subcategories',
-      value: 16,
-      change: { value: 3, type: 'increase' },
-      icon: Tag,
-      color: 'warning'
-    }
-  ];
 
   const categories = [
     {
       id: '1',
-      name: 'Subscription Packages',
-      description: 'Various subscription tiers and packages for different user needs',
+      name: 'Electronics',
+      description: 'Electronic products, technology and digital devices',
       status: 'active',
       type: 'parent',
-      productsCount: 8,
+      productsCount: 156,
       createdAt: '2024-01-01'
     },
     {
       id: '1-1',
-      name: 'Premium Plans',
-      description: 'High-tier subscription plans with all features',
+      name: 'Phones & Accessories',
+      description: 'Smartphones, headphones, chargers, phone cases',
       parentId: '1',
       status: 'active',
       type: 'child',
-      productsCount: 4,
+      productsCount: 45,
       createdAt: '2024-01-02'
     },
     {
       id: '1-2',
-      name: 'Basic Plans',
-      description: 'Entry-level subscription plans for beginners',
+      name: 'Laptops & Computers',
+      description: 'Laptops, desktop computers, computer accessories',
       parentId: '1',
       status: 'active',
       type: 'child',
-      productsCount: 4,
+      productsCount: 38,
       createdAt: '2024-01-02'
     },
     {
+      id: '1-3',
+      name: 'Home Appliances',
+      description: 'Refrigerators, washing machines, air conditioners, microwaves',
+      parentId: '1',
+      status: 'active',
+      type: 'child',
+      productsCount: 73,
+      createdAt: '2024-01-03'
+    },
+    {
       id: '2',
-      name: 'Business Solutions',
-      description: 'Enterprise and business-focused packages and services',
+      name: 'Consumer Goods',
+      description: 'Daily consumer products and household items',
       status: 'active',
       type: 'parent',
-      productsCount: 6,
+      productsCount: 89,
       createdAt: '2024-01-01'
     },
     {
       id: '2-1',
-      name: 'Enterprise',
-      description: 'Large-scale enterprise solutions',
+      name: 'Food & Beverages',
+      description: 'Fresh food, packaged food, beverages',
       parentId: '2',
       status: 'active',
       type: 'child',
-      productsCount: 3,
-      createdAt: '2024-01-03'
+      productsCount: 34,
+      createdAt: '2024-01-02'
+    },
+    {
+      id: '2-2',
+      name: 'Personal Care',
+      description: 'Cosmetics, pharmaceuticals, personal hygiene products',
+      parentId: '2',
+      status: 'active',
+      type: 'child',
+      productsCount: 55,
+      createdAt: '2024-01-02'
     },
     {
       id: '3',
-      name: 'Special Offers',
-      description: 'Promotional packages and limited-time offers',
+      name: 'Office Supplies',
+      description: 'Office equipment, study materials and work supplies',
       status: 'active',
       type: 'parent',
-      productsCount: 2,
+      productsCount: 67,
       createdAt: '2024-01-01'
+    },
+    {
+      id: '3-1',
+      name: 'School Supplies',
+      description: 'Pens, notebooks, books, study tools',
+      parentId: '3',
+      status: 'active',
+      type: 'child',
+      productsCount: 28,
+      createdAt: '2024-01-02'
+    },
+    {
+      id: '3-2',
+      name: 'Office Equipment',
+      description: 'Printers, photocopiers, fax machines, computers',
+      parentId: '3',
+      status: 'active',
+      type: 'child',
+      productsCount: 39,
+      createdAt: '2024-01-02'
+    },
+    {
+      id: '4',
+      name: 'Furniture',
+      description: 'Home and office furniture',
+      status: 'active',
+      type: 'parent',
+      productsCount: 43,
+      createdAt: '2024-01-01'
+    },
+    {
+      id: '4-1',
+      name: 'Living Room Furniture',
+      description: 'Sofas, tables, chairs, living room cabinets',
+      parentId: '4',
+      status: 'active',
+      type: 'child',
+      productsCount: 18,
+      createdAt: '2024-01-02'
+    },
+    {
+      id: '4-2',
+      name: 'Bedroom Furniture',
+      description: 'Beds, wardrobes, dressing tables',
+      parentId: '4',
+      status: 'active',
+      type: 'child',
+      productsCount: 25,
+      createdAt: '2024-01-02'
+    },
+    {
+      id: '5',
+      name: 'Fashion',
+      description: 'Clothing, shoes, fashion accessories',
+      status: 'active',
+      type: 'parent',
+      productsCount: 124,
+      createdAt: '2024-01-01'
+    },
+    {
+      id: '5-1',
+      name: "Men's Clothing",
+      description: 'Shirts, trousers, men\'s jackets',
+      parentId: '5',
+      status: 'active',
+      type: 'child',
+      productsCount: 52,
+      createdAt: '2024-01-02'
+    },
+    {
+      id: '5-2',
+      name: "Women's Clothing",
+      description: 'Dresses, tops, women\'s pants, lingerie',
+      parentId: '5',
+      status: 'active',
+      type: 'child',
+      productsCount: 72,
+      createdAt: '2024-01-02'
     }
   ];
 
@@ -147,12 +214,6 @@ const Categories = () => {
         </Link>
       </div>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {stats.map((stat, index) => (
-          <StatCard key={index} {...stat} />
-        ))}
-      </div>
 
       {/* Categories Tree View */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
@@ -168,19 +229,19 @@ const Categories = () => {
                   const children = categories.filter(cat => cat.parentId === category.id);
                   return (
                     <div key={category.id} className="space-y-1">
-                      <div className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-50 cursor-pointer">
+                      <Link to={`/categories/${category.id}`} className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-50 cursor-pointer">
                         <FolderOpen size={16} className="text-primary-500" />
                         <span className="font-medium text-gray-900">{category.name}</span>
                         {getStatusBadge(category.status)}
                         <span className="text-xs text-gray-500 ml-auto">{category.productsCount}</span>
-                      </div>
+                      </Link>
                       {children.map((child) => (
-                        <div key={child.id} className="flex items-center gap-2 p-2 ml-6 rounded-lg hover:bg-gray-50 cursor-pointer">
+                        <Link key={child.id} to={`/categories/${child.id}`} className="flex items-center gap-2 p-2 ml-6 rounded-lg hover:bg-gray-50 cursor-pointer">
                           <Tag size={14} className="text-gray-400" />
                           <span className="text-gray-700">{child.name}</span>
                           {getStatusBadge(child.status)}
                           <span className="text-xs text-gray-500 ml-auto">{child.productsCount}</span>
-                        </div>
+                        </Link>
                       ))}
                     </div>
                   );
@@ -267,12 +328,16 @@ const Categories = () => {
                       <td className="text-gray-500">{category.createdAt}</td>
                       <td>
                         <div className="flex items-center gap-2">
-                          <Button variant="ghost" size="sm">
-                            <Eye size={14} />
-                          </Button>
-                          <Button variant="ghost" size="sm">
-                            <Edit size={14} />
-                          </Button>
+                          <Link to={`/categories/${category.id}`}>
+                            <Button variant="ghost" size="sm">
+                              <Eye size={14} />
+                            </Button>
+                          </Link>
+                          <Link to={`/categories/${category.id}/edit`}>
+                            <Button variant="ghost" size="sm">
+                              <Edit size={14} />
+                            </Button>
+                          </Link>
                           <Button variant="ghost" size="sm">
                             <Trash2 size={14} />
                           </Button>
@@ -287,47 +352,6 @@ const Categories = () => {
         </div>
       </div>
 
-      {/* Quick Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="card p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">Products per Category</p>
-              <p className="text-2xl font-bold text-gray-900">14.3</p>
-              <p className="text-sm text-green-600">+2.1 avg</p>
-            </div>
-            <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
-              <Tag className="w-6 h-6 text-green-600" />
-            </div>
-          </div>
-        </div>
-
-        <div className="card p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">Most Popular</p>
-              <p className="text-lg font-semibold text-gray-900">Subscription Packages</p>
-              <p className="text-sm text-blue-600">142 products</p>
-            </div>
-            <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
-              <FolderOpen className="w-6 h-6 text-blue-600" />
-            </div>
-          </div>
-        </div>
-
-        <div className="card p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">Category Growth</p>
-              <p className="text-2xl font-bold text-gray-900">+8.5%</p>
-              <p className="text-sm text-orange-600">This month</p>
-            </div>
-            <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
-              <Tag className="w-6 h-6 text-orange-600" />
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

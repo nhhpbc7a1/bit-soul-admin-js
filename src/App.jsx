@@ -24,6 +24,8 @@ import CreateUser from './pages/users/CreateUser';
 import UserDetail from './pages/users/UserDetail';
 import EditUser from './pages/users/EditUser';
 import CreateCategory from './pages/categories/CreateCategory';
+import CategoryDetail from './pages/categories/CategoryDetail';
+import EditCategory from './pages/categories/EditCategory';
 import OrderDetail from './pages/orders/OrderDetail';
 import ProductDetail from './pages/products/ProductDetail';
 import ProductApproval from './pages/products/ProductApproval';
@@ -58,6 +60,8 @@ function App() {
             {/* Categories Routes */}
             <Route path="categories" element={<Categories />} />
             <Route path="categories/create" element={<CreateCategory />} />
+            <Route path="categories/:id" element={<CategoryDetail />} />
+            <Route path="categories/:id/edit" element={<EditCategory />} />
             
             {/* Orders Routes */}
             <Route path="orders" element={<Orders />} />

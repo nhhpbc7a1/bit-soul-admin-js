@@ -241,10 +241,6 @@ const ComplaintDetail = () => {
         </div>
         
         <div className="flex items-center gap-3">
-          <Button variant="secondary">
-            <Edit size={16} />
-            Edit Details
-          </Button>
           <select
             value={complaint.status}
             onChange={(e) => handleStatusChange(e.target.value)}

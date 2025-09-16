@@ -317,9 +317,6 @@ const Products = () => {
                           </Button>
                         </Link>
                         <Button variant="outline" size="sm">
-                          <Edit size={14} />
-                        </Button>
-                        <Button variant="outline" size="sm">
                           Hide
                         </Button>
                       </div>

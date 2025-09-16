@@ -129,6 +129,37 @@ const Policies = () => {
           </Button>
         </Link>
       </div>
+            {/* Summary Stats - Moved to bottom */}
+            <div className="bg-gray-50 rounded-lg p-6">
+        <h3 className="text-lg font-semibold text-gray-900 mb-4">Summary Statistics</h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+          <div className="card p-3">
+            <div className="text-2xl font-bold text-green-600">
+              {policies.filter(p => p.status === 'published').length}
+            </div>
+            <div className="text-sm text-gray-600">Published</div>
+          </div>
+          <div className="card p-3">
+            <div className="text-2xl font-bold text-yellow-600">
+              {policies.filter(p => p.status === 'draft').length}
+            </div>
+            <div className="text-sm text-gray-600">Drafts</div>
+          </div>
+          <div className="card p-3">
+            <div className="text-2xl font-bold text-blue-600">
+              {policies.filter(p => p.status === 'review').length}
+            </div>
+            <div className="text-sm text-gray-600">Under Review</div>
+          </div>
+          <div className="card p-3">
+            <div className="text-2xl font-bold text-gray-600">
+              {policies.reduce((sum, p) => sum + p.wordCount, 0).toLocaleString()}
+            </div>
+            <div className="text-sm text-gray-600">Total Words</div>
+          </div>
+        </div>
+      </div>
+
 
       {/* Filters */}
       <div className="flex items-center justify-between">
@@ -230,36 +261,6 @@ const Policies = () => {
         ))}
       </div>
 
-      {/* Summary Stats - Moved to bottom */}
-      <div className="bg-gray-50 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Summary Statistics</h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-          <div>
-            <div className="text-2xl font-bold text-green-600">
-              {policies.filter(p => p.status === 'published').length}
-            </div>
-            <div className="text-sm text-gray-600">Published</div>
-          </div>
-          <div>
-            <div className="text-2xl font-bold text-yellow-600">
-              {policies.filter(p => p.status === 'draft').length}
-            </div>
-            <div className="text-sm text-gray-600">Drafts</div>
-          </div>
-          <div>
-            <div className="text-2xl font-bold text-blue-600">
-              {policies.filter(p => p.status === 'review').length}
-            </div>
-            <div className="text-sm text-gray-600">Under Review</div>
-          </div>
-          <div>
-            <div className="text-2xl font-bold text-gray-600">
-              {policies.reduce((sum, p) => sum + p.wordCount, 0).toLocaleString()}
-            </div>
-            <div className="text-sm text-gray-600">Total Words</div>
-          </div>
-        </div>
-      </div>
 
       {/* Empty State */}
       {filteredPolicies.length === 0 && (
