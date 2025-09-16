@@ -155,7 +155,7 @@ const Categories = () => {
       </div>
 
       {/* Categories Tree View */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* Category Tree */}
         <div className="lg:col-span-1">
           <div className="card">
@@ -191,7 +191,7 @@ const Categories = () => {
         </div>
 
         {/* Categories Table */}
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-3">
           <div className="card">
             <div className="p-6 border-b border-gray-200">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">

@@ -38,7 +38,7 @@
   }
 
   .btn-ghost {
-    @apply bg-transparent text-gray-600 hover:bg-gray-100 hover:text-gray-900;
+    @apply bg-transparent text-gray-600 hover:bg-gray-100 hover:text-gray-900 border border-gray-300;
   }
   
   .btn-sm {

@@ -143,18 +143,6 @@ const PackageDetail = () => {
           </div>
         </div>
         
-        <div className="flex items-center gap-3">
-          <Link to={`/packages/${id}/edit`}>
-            <Button variant="secondary">
-              <Edit size={16} />
-              Edit Package
-            </Button>
-          </Link>
-          <Button variant="danger">
-            <Trash2 size={16} />
-            Delete
-          </Button>
-        </div>
       </div>
 
       {/* Stats Grid */}
@@ -335,19 +323,15 @@ const PackageDetail = () => {
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
               
               <div className="space-y-3">
-                <Button variant="primary" className="w-full">
-                  <Eye size={16} />
-                  Preview Package
-                </Button>
                 
                 <Link to={`/packages/${id}/edit`} className="block">
-                  <Button variant="secondary" className="w-full">
+                  <Button variant="primary" className="w-full">
                     <Edit size={16} />
                     Edit Package
                   </Button>
                 </Link>
                 
-                <Button variant="ghost" className="w-full">
+                <Button variant="secondary" className="w-full">
                   <Download size={16} />
                   Export Data
                 </Button>

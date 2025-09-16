@@ -162,7 +162,7 @@ const Packages = () => {
       {/* Packages Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredPackages.map((pkg) => (
-          <div key={pkg.id} className={`card card-hover relative ${pkg.id === '3' ? 'ring-2 ring-primary-200' : ''}`}>
+          <div key={pkg.id} className={`overflow-visible card card-hover relative ${pkg.id === '3' ? 'ring-2 ring-primary-200' : ''}`}>
             {/* Popular Badge */}
             {pkg.id === '3' && (
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
