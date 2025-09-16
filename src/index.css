@@ -32,7 +32,11 @@
   .btn-secondary {
     @apply bg-gray-100 text-gray-700 hover:bg-gray-200 focus:ring-gray-500 border border-gray-300;
   }
-  
+
+  .btn-soft {
+    @apply bg-gray-50 text-gray-700 hover:bg-gray-100 border border-transparent shadow-none;
+  }
+
   .btn-ghost {
     @apply bg-transparent text-gray-600 hover:bg-gray-100 hover:text-gray-900;
   }
@@ -47,11 +51,39 @@
   
   /* Card Components */
   .card {
-    @apply bg-white rounded-xl shadow-card border border-gray-200 overflow-hidden;
+    @apply bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm;
   }
   
   .card-hover {
-    @apply hover:shadow-card-hover transition-shadow duration-200;
+    @apply transition-shadow duration-200 hover:shadow-md;
+  }
+
+  .card-header {
+    @apply p-6 border-b border-gray-200 bg-white/60 backdrop-blur-[1px];
+  }
+
+  .card-title {
+    @apply text-lg font-semibold text-gray-900;
+  }
+
+  .card-subtitle {
+    @apply text-sm text-gray-500 mt-1;
+  }
+
+  .card-body {
+    @apply p-6;
+  }
+
+  .elevate-sm {
+    @apply shadow-sm;
+  }
+
+  .elevate-md {
+    @apply shadow-md;
+  }
+
+  .elevate-lg {
+    @apply shadow-lg;
   }
   
   /* Form Components */
@@ -87,11 +119,19 @@
   }
   
   .table th {
-    @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50;
+    @apply sticky top-0 z-10 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50;
   }
   
   .table td {
     @apply px-6 py-4 whitespace-nowrap text-sm text-gray-900;
+  }
+
+  .table tbody tr:nth-child(odd) {
+    @apply bg-white;
+  }
+
+  .table tbody tr:nth-child(even) {
+    @apply bg-gray-50;
   }
   
   /* Badge */
@@ -143,7 +183,6 @@
   /* Switch Component */
   .switch {
     @apply relative inline-block w-10 h-6;
-    border: 1px solid red !important; /* Debug border */
   }
 
   .switch input {

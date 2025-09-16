@@ -199,12 +199,12 @@ const Dashboard = () => {
       </div>
 
       {/* Graphical Reports */}
-      <div className="card">
-        <div className="p-6 border-b border-gray-200">
+      <div className="card card-hover">
+        <div className="card-header">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <TrendingUp className="w-5 h-5 text-blue-500" />
-              <h3 className="text-lg font-semibold text-gray-900">Performance Trends</h3>
+              <h3 className="card-title">Performance Trends</h3>
             </div>
             <div className="flex gap-2">
               {Object.keys(chartData).map((key) => (
@@ -223,7 +223,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className="p-6">
+        <div className="card-body">
           <div className="mb-4">
             <h4 className="text-md font-medium text-gray-900">{chartData[activeChart].title}</h4>
           </div>
@@ -253,12 +253,12 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Recent Orders */}
         <div className="lg:col-span-2 space-y-6">
-          <div className="card">
-            <div className="p-6 border-b border-gray-200">
+          <div className="card card-hover">
+            <div className="card-header">
               <div className="flex items-center justify-between">
-                <h3 className="text-lg font-semibold text-gray-900">Recent Orders</h3>
+                <h3 className="card-title">Recent Orders</h3>
                 <Link to="/orders">
-                  <Button variant="ghost" size="sm">
+                  <Button variant="soft" size="sm">
                     <Eye size={14} />
                     View All
                   </Button>
@@ -289,7 +289,7 @@ const Dashboard = () => {
                       <td>{order.customer}</td>
                       <td>{order.product}</td>
                       <td className="font-medium">{order.amount}</td>
-                      <td>{getStatusBadge(order.status)}</td>
+                      <td><Badge tone="soft" variant={order.status === 'completed' ? 'success' : order.status === 'pending' ? 'warning' : order.status === 'processing' ? 'info' : 'neutral'}>{order.status.charAt(0).toUpperCase() + order.status.slice(1)}</Badge></td>
                       <td className="text-gray-500">{order.date}</td>
                     </tr>
                   ))}
@@ -299,17 +299,17 @@ const Dashboard = () => {
           </div>
 
           {/* Recent Activity Log */}
-          <div className="card">
-            <div className="p-6 border-b border-gray-200">
+          <div className="card card-hover">
+            <div className="card-header">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Activity className="w-5 h-5 text-green-500" />
-                  <h3 className="text-lg font-semibold text-gray-900">Recent Activity</h3>
+                  <h3 className="card-title">Recent Activity</h3>
                 </div>
-                <Button variant="ghost" size="sm">View All</Button>
+                <Button variant="soft" size="sm">View All</Button>
               </div>
             </div>
-            <div className="p-6">
+            <div className="card-body">
               <div className="space-y-4">
                 {recentActivities.map((activity) => (
                   <div key={activity.id} className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50">
@@ -333,8 +333,11 @@ const Dashboard = () => {
         {/* Quick Actions */}
         <div className="space-y-6">
           {/* Quick Stats */}
-          <div className="card p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Stats</h3>
+          <div className="card card-hover">
+            <div className="card-header">
+              <h3 className="card-title">Quick Stats</h3>
+            </div>
+            <div className="card-body">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <span className="text-gray-600">Active Users</span>
@@ -353,11 +356,15 @@ const Dashboard = () => {
                 <span className="font-semibold text-blue-600">12</span>
               </div>
             </div>
+            </div>
           </div>
 
           {/* Quick Actions */}
-          <div className="card p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+          <div className="card card-hover">
+            <div className="card-header">
+              <h3 className="card-title">Quick Actions</h3>
+            </div>
+            <div className="card-body">
             <div className="space-y-3">
               <Link to="/users/create" className="block">
                 <Button variant="primary" className="w-full justify-start">
@@ -366,17 +373,18 @@ const Dashboard = () => {
                 </Button>
               </Link>
               <Link to="/products" className="block">
-                <Button variant="secondary" className="w-full justify-start">
+                <Button variant="soft" className="w-full justify-start">
                   <Package size={16} />
                   Manage Products
                 </Button>
               </Link>
               <Link to="/orders" className="block">
-                <Button variant="secondary" className="w-full justify-start">
+                <Button variant="soft" className="w-full justify-start">
                   <ShoppingBag size={16} />
                   View Orders
                 </Button>
               </Link>
+            </div>
             </div>
           </div>
         </div>

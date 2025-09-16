@@ -1,44 +1,12 @@
 import React, { useState } from 'react';
-import { ShoppingBag, Plus, Search, Filter, Eye, Edit, Trash2 } from 'lucide-react';
+import { Search, Filter, Eye } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import StatCard from '../components/ui/StatCard';
 import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
 
 const Orders = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
-
-  const stats = [
-    {
-      title: 'Total Orders',
-      value: 1429,
-      change: { value: 8, type: 'increase' },
-      icon: ShoppingBag,
-      color: 'primary'
-    },
-    {
-      title: 'Pending Orders',
-      value: 23,
-      change: { value: 12, type: 'increase' },
-      icon: ShoppingBag,
-      color: 'warning'
-    },
-    {
-      title: 'Completed Orders',
-      value: 1356,
-      change: { value: 15, type: 'increase' },
-      icon: ShoppingBag,
-      color: 'success'
-    },
-    {
-      title: 'Cancelled Orders',
-      value: 50,
-      change: { value: 3, type: 'decrease' },
-      icon: ShoppingBag,
-      color: 'danger'
-    }
-  ];
 
   const orders = [
     {
@@ -116,23 +84,12 @@ const Orders = () => {
 
   return (
     <div className="space-y-6">
-      {/* Page Header */}
+      {/* Page Header - minimal */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Orders Management</h1>
           <p className="text-gray-600 mt-1">Track and manage customer orders</p>
         </div>
-        <Button variant="warning">
-          <Plus size={16} />
-          Manual Order Entry
-        </Button>
-      </div>
-
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {stats.map((stat, index) => (
-          <StatCard key={index} {...stat} />
-        ))}
       </div>
 
       {/* Orders Table */}
@@ -190,7 +147,9 @@ const Orders = () => {
               {filteredOrders.map((order) => (
                 <tr key={order.id} className="hover:bg-gray-50">
                   <td>
-                    <span className="font-medium text-primary-600">#{order.orderNumber || order.id}</span>
+                    <Link to={`/orders/${order.id}`} className="font-medium text-primary-600 hover:text-primary-800">
+                      #{order.orderNumber || order.id}
+                    </Link>
                   </td>
                   <td>
                     <div className="flex items-center gap-3">
@@ -227,23 +186,14 @@ const Orders = () => {
             </tbody>
           </table>
         </div>
+      </div>
 
-        {/* Pagination */}
-        <div className="px-6 py-4 border-t border-gray-200">
-          <div className="flex items-center justify-between">
-            <p className="text-sm text-gray-500">
-              Showing {filteredOrders.length} of {orders.length} orders
-            </p>
-            <div className="flex items-center gap-2">
-              <Button variant="secondary" size="sm" disabled>
-                Previous
-              </Button>
-              <Button variant="secondary" size="sm">
-                Next
-              </Button>
-            </div>
-          </div>
+      {/* Admin Actions */}
+      <div className="card p-6">
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-semibold text-gray-900">Admin Actions</h3>
         </div>
+        <p className="text-xs text-gray-500 mt-2">Editing or deleting orders is not allowed. You can only view, track shipment, and inspect financial breakdown on the order detail page.</p>
       </div>
     </div>
   );

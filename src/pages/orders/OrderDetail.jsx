@@ -409,11 +409,11 @@ const OrderDetail = () => {
         <div className="lg:col-span-1">
           <div className="space-y-6">
             {/* Admin Actions */}
-            <div className="card bg-gray-50">
-              <div className="p-6 border-b border-gray-200">
+            <div className="card bg-gray-50 card-hover">
+              <div className="card-header">
                 <h3 className="text-lg font-semibold text-gray-900">Admin Actions</h3>
               </div>
-              <div className="p-6">
+              <div className="card-body">
                 <div className="space-y-3">
                   <a href="#shipping-details">
                     <Button variant="secondary" className="w-full">
@@ -423,7 +423,7 @@ const OrderDetail = () => {
                   </a>
                   
                   <a href="#financial-breakdown">
-                    <Button variant="secondary" className="w-full">
+                    <Button variant="secondary" className="w-full mt-3">
                       <Eye size={16} />
                       View Commission Details
                     </Button>
@@ -448,14 +448,14 @@ const OrderDetail = () => {
               </div>
             </div>
             {/* Customer Info */}
-            <div className="card">
-              <div className="p-6 border-b border-gray-200">
+            <div className="card card-hover">
+              <div className="card-header">
                 <div className="flex items-center gap-2">
                   <User className="w-5 h-5 text-gray-400" />
-                  <h3 className="text-lg font-semibold text-gray-900">Customer</h3>
+                  <h3 className="card-title">Customer</h3>
                 </div>
               </div>
-              <div className="p-6">
+              <div className="card-body">
                 <div className="space-y-3">
                   <div>
                     <p className="font-medium text-gray-900">{order.customer.name}</p>
@@ -466,6 +466,55 @@ const OrderDetail = () => {
                   </div>
                   <div className="flex items-center gap-2 text-sm text-gray-600">
                     <span>{order.customer.phone}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Seller Info */}
+            <div className="card card-hover">
+              <div className="card-header">
+                <div className="flex items-center gap-2">
+                  <User className="w-5 h-5 text-gray-400" />
+                  <h3 className="card-title">Seller</h3>
+                </div>
+              </div>
+              <div className="card-body">
+                <div className="space-y-3">
+                  <div>
+                    <p className="font-medium text-gray-900">{order.seller.name}</p>
+                    <p className="text-sm text-gray-500">ID: {order.seller.id}</p>
+                  </div>
+                  {order.seller.email && (
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <span>{order.seller.email}</span>
+                    </div>
+                  )}
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-600">Commission</span>
+                    <span className="font-medium text-purple-700">${order.seller.commission?.toFixed ? order.seller.commission.toFixed(2) : order.seller.commission}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Supplier Info */}
+            <div className="card card-hover">
+              <div className="card-header">
+                <div className="flex items-center gap-2">
+                  <Package className="w-5 h-5 text-gray-400" />
+                  <h3 className="card-title">Supplier</h3>
+                </div>
+              </div>
+              <div className="card-body">
+                <div className="space-y-3">
+                  <div>
+                    <p className="font-medium text-gray-900">{order.supplier.name}</p>
+                    <p className="text-sm text-gray-500">ID: {order.supplier.id}</p>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-600">Supplier Cost</span>
+                    <span className="font-medium text-red-700">${order.supplier.cost?.toFixed ? order.supplier.cost.toFixed(2) : order.supplier.cost}</span>
                   </div>
                 </div>
               </div>

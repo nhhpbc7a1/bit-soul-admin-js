@@ -16,6 +16,7 @@ const Button = ({
   const variantClasses = {
     primary: 'btn-primary',
     secondary: 'btn-secondary',
+    soft: 'btn-soft',
     ghost: 'btn-ghost',
     danger: 'bg-red-500 text-white hover:bg-red-600 focus:ring-red-500',
     warning: 'bg-yellow-500 text-white hover:bg-yellow-600 focus:ring-yellow-500',

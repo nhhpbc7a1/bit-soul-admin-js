@@ -13,7 +13,8 @@ import {
   Cpu,
   Tag,
   Package,
-  FileText
+  FileText,
+  BarChart3
 } from 'lucide-react';
 
 const navItems = [
@@ -25,6 +26,7 @@ const navItems = [
   { id: 'payments', label: 'Payments', icon: CreditCard, path: '/payments' },
   { id: 'packages', label: 'Packages', icon: Package, path: '/packages' },
   { id: 'complaints', label: 'Complaints', icon: AlertTriangle, path: '/complaints', badge: 7, badgeColor: 'danger' },
+  { id: 'analysis', label: 'Analysis', icon: BarChart3, path: '/analysis' },
   { id: 'policies', label: 'Policies', icon: FileText, path: '/policies' },
   { id: 'ai-operations', label: 'AI Operations', icon: Cpu, path: '/ai-operations' },
   { id: 'system-config', label: 'System Config', icon: Settings, path: '/system-config' },

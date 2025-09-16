@@ -136,10 +136,12 @@ const ProductDetail = () => {
           <Button variant="warning">
             Hide Product
           </Button>
-          <Button variant="secondary">
-            <Eye size={16} />
-            View Analytics
-          </Button>
+          <Link to={`/analysis/products?product=${product.id}`}>
+            <Button variant="secondary">
+              <Eye size={16} />
+              View Analytics
+            </Button>
+          </Link>
         </div>
       </div>
 

@@ -13,6 +13,11 @@ import Policies from './pages/Policies';
 import AIOperations from './pages/AIOperations';
 import SystemConfig from './pages/SystemConfig';
 import UIContent from './pages/UIContent';
+import Analysis from './pages/Analysis';
+
+// Analysis pages
+import ProductPerformance from './pages/analysis/ProductPerformance';
+import CategoryAnalysis from './pages/analysis/CategoryAnalysis';
 
 // Child pages
 import CreateUser from './pages/users/CreateUser';
@@ -71,6 +76,11 @@ function App() {
             <Route path="packages/:id" element={<PackageDetail />} />
             <Route path="packages/:id/edit" element={<EditPackage />} />
             <Route path="complaints" element={<Complaints />} />
+            
+            {/* Analysis Routes */}
+            <Route path="analysis" element={<Analysis />} />
+            <Route path="analysis/products" element={<ProductPerformance />} />
+            <Route path="analysis/categories" element={<CategoryAnalysis />} />
             
             {/* Policies Routes */}
             <Route path="policies" element={<Policies />} />

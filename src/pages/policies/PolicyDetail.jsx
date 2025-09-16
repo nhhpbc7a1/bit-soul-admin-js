@@ -103,13 +103,33 @@ For questions about these terms, please contact us at:
   const getStatusBadge = (status) => {
     switch (status) {
       case 'published':
-        return <Badge variant="success"><CheckCircle size={12} /> Published</Badge>;
+        return (
+          <Badge variant="success" className="flex items-center gap-1">
+            <CheckCircle size={12} />
+            Published
+          </Badge>
+        );
       case 'draft':
-        return <Badge variant="warning"><Edit size={12} /> Draft</Badge>;
+        return (
+          <Badge variant="warning" className="flex items-center gap-1">
+            <Edit size={12} />
+            Draft
+          </Badge>
+        );
       case 'review':
-        return <Badge variant="info"><Clock size={12} /> Under Review</Badge>;
+        return (
+          <Badge variant="info" className="flex items-center gap-1">
+            <Clock size={12} />
+            Under Review
+          </Badge>
+        );
       case 'archived':
-        return <Badge variant="neutral"><Archive size={12} /> Archived</Badge>;
+        return (
+          <Badge variant="neutral" className="flex items-center gap-1">
+            <Archive size={12} />
+            Archived
+          </Badge>
+        );
       default:
         return <Badge variant="neutral">{status}</Badge>;
     }
@@ -235,14 +255,14 @@ For questions about these terms, please contact us at:
                 <h3 className="text-lg font-semibold text-gray-900">Admin Actions</h3>
               </div>
               <div className="p-6 space-y-3">
-                <Link to={`/policies/${policy.id}/edit`}>
+                <Link to={`/policies/${policy.id}/edit`} className="block">
                   <Button variant="primary" className="w-full">
                     <Edit size={16} />
                     Edit Policy
                   </Button>
                 </Link>
                 
-                <Link to={`/policies/${policy.id}/history`}>
+                <Link to={`/policies/${policy.id}/history`} className="block">
                   <Button variant="secondary" className="w-full">
                     <History size={16} />
                     View History

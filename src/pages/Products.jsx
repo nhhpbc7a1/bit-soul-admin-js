@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Package, Plus, Search, Filter, Eye, Edit, Trash2, Star, Grid3X3, List } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Badge from '../components/ui/Badge';
@@ -8,6 +8,8 @@ const Products = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'list'
+  const [pageSize, setPageSize] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
 
 
   const products = [
@@ -95,6 +97,16 @@ const Products = () => {
     return matchesSearch && matchesStatus;
   });
 
+  // Reset to first page when filters or page size change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, statusFilter, pageSize]);
+
+  const totalPages = Math.max(1, Math.ceil(filteredProducts.length / pageSize));
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
+
   return (
     <div className="space-y-6">
       {/* Page Header */}
@@ -167,7 +179,21 @@ const Products = () => {
             <option value="rejected">Rejected</option>
           </select>
           
-          <Button variant="secondary" size="sm">
+          <div className="flex items-center gap-2">
+            <span className="text-sm text-gray-500">Rows:</span>
+            <select
+              value={pageSize}
+              onChange={(e) => setPageSize(Number(e.target.value))}
+              className="form-input w-24"
+            >
+              <option value={5}>5</option>
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={50}>50</option>
+            </select>
+          </div>
+          
+          <Button variant="outline" size="sm">
             <Filter size={16} />
             Filter
           </Button>
@@ -177,7 +203,7 @@ const Products = () => {
       {/* Products Grid/List View */}
       {viewMode === 'grid' ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredProducts.map((product) => (
+          {paginatedProducts.map((product) => (
             <div key={product.id} className="card card-hover">
               {/* Product Image */}
               <div className="aspect-w-16 aspect-h-9 bg-gray-200 rounded-t-xl">
@@ -226,7 +252,7 @@ const Products = () => {
                       View Details
                     </Button>
                   </Link>
-                  <Button variant="warning" size="sm">
+                  <Button variant="outline" size="sm">
                     Hide
                   </Button>
                 </div>
@@ -236,21 +262,20 @@ const Products = () => {
         </div>
       ) : (
         <div className="card">
-          <div className="overflow-x-auto">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>Product</th>
-                  <th>Price</th>
-                  <th>Category</th>
-                  <th>Stock</th>
-                  <th>Status</th>
-                  <th>Created</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
+          <table className="table">
+            <thead>
+              <tr>
+                <th className="static">Product</th>
+                <th className="static">Price</th>
+                <th className="static">Category</th>
+                <th className="static">Stock</th>
+                <th className="static">Status</th>
+                <th className="static">Created</th>
+                <th className="static">Actions</th>
+              </tr>
+            </thead>
               <tbody className="divide-y divide-gray-200">
-                {filteredProducts.map((product) => (
+                {paginatedProducts.map((product) => (
                   <tr key={product.id} className="hover:bg-gray-50">
                     <td>
                       <div className="flex items-center gap-3">
@@ -291,10 +316,10 @@ const Products = () => {
                             <Eye size={14} />
                           </Button>
                         </Link>
-                        <Button variant="ghost" size="sm">
+                        <Button variant="outline" size="sm">
                           <Edit size={14} />
                         </Button>
-                        <Button variant="warning" size="sm">
+                        <Button variant="outline" size="sm">
                           Hide
                         </Button>
                       </div>
@@ -303,26 +328,27 @@ const Products = () => {
                 ))}
               </tbody>
             </table>
-          </div>
         </div>
       )}
 
       {/* Pagination */}
       <div className="flex items-center justify-center">
         <div className="flex items-center gap-2">
-          <Button variant="secondary" size="sm" disabled>
+          <Button
+            variant="outline"
+            size="sm"
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+          >
             Previous
           </Button>
-          <Button variant="primary" size="sm">
-            1
-          </Button>
-          <Button variant="secondary" size="sm">
-            2
-          </Button>
-          <Button variant="secondary" size="sm">
-            3
-          </Button>
-          <Button variant="secondary" size="sm">
+          <span className="text-sm text-gray-600 px-2">Page {currentPage} of {totalPages}</span>
+          <Button
+            variant="outline"
+            size="sm"
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+          >
             Next
           </Button>
         </div>
